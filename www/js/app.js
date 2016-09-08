@@ -38,6 +38,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
       templateUrl: 'templates/login.html',
       controller: 'LoginCtrl'
   })
+   
+    .state('register', {
+      url: '/register',
+      templateUrl: 'templates/register.html',
+     
+  })
+
+
     .state('tab', {
     url: '/tab',
     abstract: true,
