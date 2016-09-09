@@ -27,13 +27,25 @@ angular.module('starter.controllers', [])
         LoginService.loginUser(user,pass).success(function(data) {
             $state.go('tab.dash');
         }).error(function(data) {
+           $state.go('register');
             var alertPopup = $ionicPopup.alert({
                 title: 'Login failed!',
+
                 template: 'Please check your credentials!'
             });
         });
     }
 })
+.controller('regCtrl', function($scope, $ionicPopup, $state) {
+ 
+ 
+    $scope.register = function() {
+     console.log("ok ");
+       $state.go('register');
+           
+    }
+})
+
 
 
 
