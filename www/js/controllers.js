@@ -1,6 +1,43 @@
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+.controller('DashCtrl', function($scope, Camera) {
+
+   $scope.takePicture = function (options) {
+  
+      var options = {
+         quality : 75, 
+         targetWidth: 300,
+         targetHeight: 300,
+         sourceType: 1,    
+         saveToPhotoAlbum: true
+      };
+
+      
+      Camera.getPicture(options).then(function(imageData) {
+         $scope.picture = imageData;
+      }, function(err) {
+         console.log(err);
+      });
+    
+   };
+
+   $scope.getPicture = function (options) {
+  
+      var options = {
+         quality : 75,
+         targetWidth: 300,
+         targetHeight: 300,
+         sourceType: 0,         
+         // saveToPhotoAlbum: true
+      };
+      Camera.getPicture(options).then(function(imageData) {
+         $scope.picture = imageData;
+      }, function(err) {
+         console.log(err);
+      });
+    };
+
+})
 
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
@@ -16,6 +53,8 @@ angular.module('starter.controllers', [])
     Chats.remove(chat);
   };
 })
+
+
 
 .controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state) {
     $scope.data = {};
@@ -59,3 +98,5 @@ angular.module('starter.controllers', [])
     enableFriends: true
   };
 });
+
+
