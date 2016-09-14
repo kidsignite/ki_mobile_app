@@ -2,21 +2,26 @@
 <ion-view view-title="register" name="register-view">
   <ion-content class="padding">
      
-<div class="list">
+    
+   
+<div class="list"  ng-app="starter" ng-controller="exp">
   <label class="item item-input item-stacked-label">
-    <span class="input-label" ng-model="data2.username">Phone number</span>
+    <span class="input-label" ng-model="data.username">Phone number</span>
     <input type="text" placeholder="John">
   </label>
   <label class="item item-input item-stacked-label">
-    <span class="input-label" ng-model="data2.lname">email</span>
+    <span class="input-label" ng-model="data.lname">email</span>
     <input type="text" placeholder="Suhr">
   </label>
   <label class="item item-input item-stacked-label">
-    <span class="input-label" ng-model="data2.username">password</span>
+    <span class="input-label" ng-model="data.pass">password</span>
     <input type="text" placeholder="john@suhr.com">
-    <button class="button button-block button-calm" ng-click="FILL THE METHOD()">Register</button>
+    <button class = "button button-calm" ng-click = "getdata()">Register</button>
+   </label>
+   <br/>
+   name :{{getdata}} {{lastname}}
 
-  </label>
+ 
 </div>
 
           

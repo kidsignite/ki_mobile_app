@@ -17,6 +17,16 @@ angular.module('starter.controllers', [])
   };
 })
 
+.controller('regCtrl', function($scope, $state) {
+ 
+ 
+    $scope.register = function() {
+     console.log("ok ");
+       $state.go('register');
+           
+    }
+})
+
 .controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state) {
     $scope.data = {};
  
@@ -27,25 +37,35 @@ angular.module('starter.controllers', [])
         LoginService.loginUser(user,pass).success(function(data) {
             $state.go('tab.dash');
         }).error(function(data) {
-           $state.go('register');
+         
             var alertPopup = $ionicPopup.alert({
                 title: 'Login failed!',
 
-                template: 'Please register!'
+                template: 'Please check your cardentials!'
             });
         });
     }
 })
-.controller('regCtrl', function($scope, $ionicPopup, $state) {
- 
- 
-    $scope.register = function() {
-     console.log("ok ");
-       $state.go('register');
-           
-    }
-})
+//addd module to this controller as module.controller and see it catches the controller bt thorws an error dont knw y 
+.controller('exp', function($scope, $http) {
+ $scope.data = {};
+    $scope.getData = function() {
+      var user = $scope.data.username;
+      var lname =$scope.data.lname;
+      var pass  = $scope.data.pass;
 
+      console.log("Fuck U");
+        $http.get("http://echo.jsontest.com/fname/nic/lname/arafath/8124021/misree", { params: { "key1": "value1", "key2": "value2" , "key3": "value3" } })
+            .success(function(data) {
+                $scope.firstname = data.firstname;
+                $scope.lastname = data.lastname;
+            })
+            .error(function(data) {
+                alert("ERROR");
+            });
+    }
+ 
+})
 
 
 
