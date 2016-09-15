@@ -35,6 +35,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
      .state('login', {
       url: '/login',
+     
       templateUrl: 'templates/login.html',
       controller: 'LoginCtrl'
   })
@@ -42,7 +43,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     .state('register', {
       url: '/register',
       templateUrl: 'templates/register.html',
-      controller: 'regCtrl',
+    
+      
+     
+  })
+
+  .state('verify', {
+      url: '/verify',
+      templateUrl: 'templates/tabs-verify.html',
+    
       
      
   })

@@ -1,6 +1,9 @@
 <ion-view view-title="Dashboard">
   <ion-content class="padding">
-    <h2>Welcome to Kidsignite</h2>
-    
+    <h2>Welcome to kidsignite</h2><br>
+    <button class = "button button-positive" ng-click = "takePicture()">Take Picture</button>
+<button class = "button button-positive" ng-click = "getPicture()">Open Gallery</button>
+<img ng-show="picture !== undefined" ng-src = "{{picture}}">
+<img ng-show="picture === undefined" ng-src="http://placehold.it/300x300">
   </ion-content>
 </ion-view>
