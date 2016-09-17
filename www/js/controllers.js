@@ -92,11 +92,11 @@ angular.module('starter.controllers', [])
 */
 
 
-  $http.post ('https://script.google.com/macros/s/AKfycbz8Z3KQfdsLcSTDJzAGnSiuhJOQArWqIwQ9Aatba8Aa/dev?',$scope.data).success(function(data){
-console.log("ok")
-    $state.go('verify');
-  }).error(function (data){
-    
+  $http.post('https://script.google.com/macros/s/AKfycbz8Z3KQfdsLcSTDJzAGnSiuhJOQArWqIwQ9Aatba8Aa/dev?',$scope.data).success(function(data,response){
+console.log('ok')
+    //$state.go('verify'); to go to verify
+  }).error(function (data,response){
+    $state.go('invalid'); //to go to invalid 
     console.log('fuck')
   });
 
@@ -133,6 +133,12 @@ console.log("ok")
 //addd module to this controller as module.controller and see it catches the controller bt thorws an error dont knw y 
 
 
+.controller('inv', function($scope, $state) {
+   
+    $scope.invt = function() {
+       $state.go('login');
+    }
+})
 
 
 

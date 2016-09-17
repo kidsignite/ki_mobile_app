@@ -56,6 +56,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
      
   })
 
+   .state('invalid', {
+      url: '/invalid',
+      templateUrl: 'templates/invalid.html',
+    
+      
+     
+  })
 
 
   
