@@ -1,6 +1,10 @@
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope, Camera) {
+  var wurl;
+  var phoneno;
+  var email;
+  var password;
 
    $scope.takePicture = function (options) {
   
@@ -54,15 +58,19 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('regCtrl', function($scope,$http,$state) {
+.controller('regCtrl', function($scope, $state, $http) {
    $scope.data = {};
-  
-  $scope.getdata = function() {
- 
-      var phoneno = $scope.data.phoneno;
-      var email =$scope.data.email;
-      var password  = $scope.data.password;
-      console.log ($scope.data);
+   
+
+
+  $scope.registerUser = function() {
+   var phoneno = $scope.data.phoneno;
+   var email =$scope.data.email;
+   var password  = $scope.data.password;
+   alert(phoneno);
+   wurl = 'https://script.google.com/macros/s/AKfycbzv1UjeeQJi4b4OiD_kc1l_gATR_rfKqFoWZLfd4dlegVRIkH8x/exec?email=' + $scope.data.email +'&phoneno=' + $scope.data.phoneno + '&password=' + $scope.data.password;
+
+    console.log ($scope.data);
     
    /*     
   var data = {
@@ -90,24 +98,86 @@ angular.module('starter.controllers', [])
 
 
 */
+var firstRequest;
+alert($scope.data.email);
+var request = {
+   method: 'POST',
+   contentType:'application/json',
+   url: 'https://script.google.com/macros/s/AKfycbzv1UjeeQJi4b4OiD_kc1l_gATR_rfKqFoWZLfd4dlegVRIkH8x/exec?email=' + $scope.data.email +'&phoneno=' + $scope.data.phoneno + '&password=' + $scope.data.password,
+   //url: 'https://script.google.com/macros/s/AKfycbzv1UjeeQJi4b4OiD_kc1l_gATR_rfKqFoWZLfd4dlegVRIkH8x/exec?email=prasanthikad@hotmail.com&phoneno=777898328&password=12345',
+   headers: {'Content-Type': undefined},
+   //data: { test: 'test' }
+};
+
+$http(request).then(function(response) {
+  console.log(response);
+  firstRequest = response.data;
+  console.log(firstRequest);
+  if(firstRequest ==='true'){
+     console.log("got here");
+     $state.go('verify');
+   alert("User Verified, Verification Code will be sent shortly");
+  }else{
+  alert("Invalid Information");
+  }
+
+}, function(error) {
+  alert("error");
+});
 
 
-  $http.post('https://script.google.com/macros/s/AKfycbz8Z3KQfdsLcSTDJzAGnSiuhJOQArWqIwQ9Aatba8Aa/dev?',$scope.data).success(function(data,response){
-console.log('ok')
-    //$state.go('verify'); to go to verify
-  }).error(function (data,response){
-    $state.go('invalid'); //to go to invalid 
-    console.log('fuck')
-  });
+     
 
 
-      
+
+
+
+
+
+
+  };
+$scope.verifyUniqueCode = function(){
+
+  var verificationCode  = $scope.data.code;
+   alert(wurl);
+  var secondRequest;
+  var req = {
+     method: 'POST',
+     contentType:'application/json',
+     //url: 'https://script.google.com/macros/s/AKfycbzv1UjeeQJi4b4OiD_kc1l_gATR_rfKqFoWZLfd4dlegVRIkH8x/exec?email=' + email +'&phoneno=' + phoneno + '&password=' + password + '&uniquekey=' + verificationCode,
+    url: wurl+'&uniquekey='+verificationCode,
+
+     headers: {'Content-Type': undefined},
+     //data: { test: 'test' }
   };
 
-  
+  $http(req).then(function(response) {
+    alert(response.data);
+    console.log(response);
+    secondRequest = response.data;
+    console.log(secondRequest);
+
+    if(secondRequest=="true"){
+    alert("User Verified, Creating HumHub account");
+
+    }else{
+      alert("User Verification Failed");
+    }
+
+  }, function(error) {
+    alert("error");
+  });
+}
+
+
+
+
+
+
+
+
 
     // NOTE: encoding not functioning yet
-   
 })
 
 
