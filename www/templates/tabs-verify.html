@@ -3,12 +3,12 @@
   <ion-content class="padding">
      
     
- <div class="list"  ng-app="starter" >
+ <div class="list"  ng-app="starter" ng-controller="regCtrl">
   
  
   Enter the code to verify
     <input type="text" ng-model="data.code" placeholder="000 000 00 ">
-    <button class = "button button-calm" >verify</button>
+    <button class = "button button-calm" ng-click = "verifyUniqueCode()" >verify</button>
 <br/>
 <br/>
    
